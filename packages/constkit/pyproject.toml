@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "constkit"
+version = "0.1.0"
+description = "Symbolic tensor algebra toolkit for constitutive modeling courses"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Shmuel Osovski", email = "osovski.technion@gmail.com" },
+]
+keywords = ["tensor", "symbolic", "sympy", "continuum-mechanics", "teaching"]
+dependencies = [
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+numeric = ["numpy>=1.24", "scipy>=1.10"]
+plot = ["matplotlib>=3.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/constkit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,39 @@
+[project]
+name = "teaching-materials"
+version = "0"
+description = "Monorepo of teaching helper packages for the courses I teach."
+readme = "README.md"
+# Floor is 3.11 because symbolic-fem-workbench targets 3.11+ (constkit itself
+# supports 3.10, but the shared environment follows the strictest member).
+requires-python = ">=3.11"
+# The workspace root is virtual (package = false below); it aggregates the
+# member packages under packages/*. Listing them here makes `uv sync` install
+# every course toolkit into the shared environment.
+dependencies = [
+    "constkit",
+    "symbolic-fem-workbench",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+constkit = { workspace = true }
+symbolic-fem-workbench = { workspace = true }
+
+[dependency-groups]
+# Shared dev tooling for the whole monorepo.
+dev = [
+    "pytest>=7.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "ruff>=0.6.0",
+    "mypy>=1.11",
+]
+
+[tool.pytest.ini_options]
+# Run every package's test suite from the repo root: `uv run pytest`
+testpaths = ["packages"]
