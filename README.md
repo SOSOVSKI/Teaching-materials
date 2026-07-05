@@ -1,5 +1,7 @@
 # Teaching materials
 
+![](courses_banner.png)
+
 A [uv](https://docs.astral.sh/uv/)-managed monorepo collecting the helper
 packages I write for the courses I teach. Each course's toolkit lives as its own
 installable package under `packages/`, but they share one lockfile, one virtual
